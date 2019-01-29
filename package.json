@@ -1,0 +1,33 @@
+{
+  "name": "mongodb-companion-api",
+  "version": "1.0.0",
+  "description": "MongoDB Companion API",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvsmounish/MongoDB-Companion-API.git"
+  },
+  "keywords": [
+    "MongoDB"
+  ],
+  "author": "Mounish Sai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pvsmounish/MongoDB-Companion-API/issues"
+  },
+  "homepage": "https://github.com/pvsmounish/MongoDB-Companion-API#readme",
+  "dependencies": {
+    "apollo-server": "^2.3.2",
+    "graphql": "^14.1.1",
+    "mongoose": "^5.4.7"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "nodemon": "^1.18.9"
+  }
+}
