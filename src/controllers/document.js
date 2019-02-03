@@ -10,7 +10,13 @@ module.exports.listDocuments = async (collectionName) => {
 
         const documentCursor = dbase.collection(collectionName).find();
 
-        return JSON.stringify(await documentCursor.toArray());
+        const documentArray = await documentCursor.toArray();
+
+        return documentArray.map((document) => {
+            return {
+                data: JSON.stringify(document)
+            };
+        });
 
     } catch(e) {
         console.error(e);

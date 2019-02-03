@@ -3,16 +3,21 @@ const { listDocuments } = require('../controllers/document');
 
 module.exports = {
     Query: {
-        listCollections: async(_, {}, context) => {
+        collections: async(_, {}, context) => {
             return await listCollections();
         },
-        listDocuments: async(_, {collectionName}, context) => {
+        documents: async(_, {collectionName}, context) => {
             return await listDocuments(collectionName);
         },
     },
     Mutation: {
         createCollection: async(_, {collectionName}, context) => {
             return await createCollection(collectionName);
+        },
+    },
+    Collection: {
+        documents: async(collection, {}, context) => {
+            return await listDocuments(collection.name);
         },
     }
 }

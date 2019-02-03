@@ -10,7 +10,9 @@ module.exports.listCollections = async () => {
         const collections = await dbase.collections();
 
         const collectionNames = collections.map(collection => {
-            return collection.collectionName;
+            return {
+                name: collection.collectionName
+            }
         })
 
         console.log(collectionNames);
