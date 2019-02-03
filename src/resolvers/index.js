@@ -1,5 +1,5 @@
 const { listCollections, createCollection } = require('../controllers/collection');
-const { listDocuments } = require('../controllers/document');
+const { listDocuments, createDocument } = require('../controllers/document');
 
 module.exports = {
     Query: {
@@ -13,6 +13,9 @@ module.exports = {
     Mutation: {
         createCollection: async(_, {collectionName}, context) => {
             return await createCollection(collectionName);
+        },
+        createDocument: async(_, {collectionName, data}, context) => {
+            return await createDocument(collectionName, data);
         },
     },
     Collection: {

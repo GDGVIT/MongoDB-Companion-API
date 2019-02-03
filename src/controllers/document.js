@@ -24,3 +24,25 @@ module.exports.listDocuments = async (collectionName) => {
     }
     
 }
+
+module.exports.createDocument = async (collectionName, data) => {
+
+    try {
+
+        const client = await MongoClient.connect(mongodbUri,{ useNewUrlParser: true });
+        const dbase = client.db("moneyledger");
+
+        const dataObj = JSON.parse(data);
+
+        const insertedRes = await dbase.collection(collectionName).insertOne(dataObj);
+
+        console.log(`Added document with _id: ${insertedRes.insertedId} into ${collectionName}`);
+
+        return JSON.stringify(insertedRes.ops['0']);
+
+    } catch(e) {
+        console.error(e);
+        return `Error: displaying collections`;
+    }
+    
+}
