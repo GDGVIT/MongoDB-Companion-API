@@ -2,19 +2,21 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type Query {
+        collection(name: String): Collection
         collections: [Collection!]
-        documents(collectionName: String): [Document]
     }
     type Mutation {
-        createCollection(collectionName: String): String
-        createDocument(collectionName: String, data: String): String
+        createCollection(name: String): Collection
     }
     type Collection {
         name: String!
         documents: [Document]
+        createDocument(data: String): Document
+        deleteDocument(id: String): String
     }
     type Document {
         data: String
     }
 `;
+
 module.exports = typeDefs;

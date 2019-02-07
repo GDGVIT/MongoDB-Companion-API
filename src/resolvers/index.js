@@ -1,26 +1,30 @@
-const { listCollections, createCollection } = require('../controllers/collection');
-const { listDocuments, createDocument } = require('../controllers/document');
+const { getCollection, listCollections, createCollection } = require('../controllers/collection');
+const { listDocuments, createDocument, deleteDocument } = require('../controllers/document');
+
 
 module.exports = {
     Query: {
-        collections: async(_, {}, context) => {
-            return await listCollections();
+        collection: async(_, {name}, {database}) => {
+            return await getCollection(database, name);
         },
-        documents: async(_, {collectionName}, context) => {
-            return await listDocuments(collectionName);
+        collections: async(_, {name}, {database}) => {
+            return await listCollections(database, name);
         },
     },
     Mutation: {
-        createCollection: async(_, {collectionName}, context) => {
-            return await createCollection(collectionName);
-        },
-        createDocument: async(_, {collectionName, data}, context) => {
-            return await createDocument(collectionName, data);
+        createCollection: async(_, {name}, {database}) => {
+            return await createCollection(database, name);
         },
     },
     Collection: {
-        documents: async(collection, {}, context) => {
-            return await listDocuments(collection.name);
+        documents: async(collection, {}, {database}) => {
+            return await listDocuments(database, collection.name);
+        },
+        createDocument: async(collection, {data}, {database}) => {
+            return await createDocument(database, collection.name, data);
+        },
+        deleteDocument: async(collection, {id}, {database}) => {
+            return await deleteDocument(database, collection.name, id);
         },
     }
 }
