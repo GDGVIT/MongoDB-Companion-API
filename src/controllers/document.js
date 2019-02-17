@@ -4,7 +4,6 @@ module.exports.getDocument = async (database, collectionName, id) => {
 
     try {
         const document = await database.collection(collectionName).findOne({_id: ObjectID(id)});
-        console.log(document, collectionName, id)
             return {
                 data: JSON.stringify(document)
             };
