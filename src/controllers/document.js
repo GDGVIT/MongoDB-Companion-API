@@ -65,9 +65,9 @@ module.exports.editDocument = async (database, collectionName, id, data) => {
 module.exports.deleteDocument = async (database, collectionName, id) => {
 
     try {
-        const removeRes = await database.collection(collectionName).deleteOne({_id: id});
+        await database.collection(collectionName).deleteOne({_id: ObjectID(id)});
         console.log(`Deleted document with _id: ${id} in ${collectionName}`);
-        return id;
+        return "Deleted!";
 
     } catch(e) {
         console.error(e);
