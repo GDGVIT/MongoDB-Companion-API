@@ -48,6 +48,20 @@ module.exports.createDocument = async (database, collectionName, data) => {
     
 }
 
+module.exports.editDocument = async (database, collectionName, id, data) => {
+
+    try {
+        await database.collection(collectionName).updateOne({_id: ObjectID(id)}, { $set: JSON.parse(data) });
+        console.log(`Updated document with _id: ${id} in ${collectionName}`);
+        return 'Updated!';
+
+    } catch(e) {
+        console.error(e);
+        return `Error: updating document`;
+    }
+    
+}
+
 module.exports.deleteDocument = async (database, collectionName, id) => {
 
     try {
@@ -61,3 +75,4 @@ module.exports.deleteDocument = async (database, collectionName, id) => {
     }
     
 }
+

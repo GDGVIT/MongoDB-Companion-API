@@ -1,5 +1,5 @@
 const { getCollection, listCollections, createCollection } = require('../controllers/collection');
-const { getDocument, listDocuments, createDocument, deleteDocument } = require('../controllers/document');
+const { getDocument, listDocuments, createDocument, editDocument, deleteDocument } = require('../controllers/document');
 
 module.exports = {
     Query: {
@@ -24,6 +24,9 @@ module.exports = {
         },
         createDocument: async(collection, {data}, {database}) => {
             return await createDocument(database, collection.name, data);
+        },
+        editDocument: async(collection, {id, data}, {database}) => {
+            return await editDocument(database, collection.name, id, data);
         },
         deleteDocument: async(collection, {id}, {database}) => {
             return await deleteDocument(database, collection.name, id);

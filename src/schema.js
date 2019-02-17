@@ -13,6 +13,7 @@ const typeDefs = gql`
         document(id: String): Document
         documents: [Document]
         createDocument(data: String): Document
+        editDocument(id: String, data: String): String
         deleteDocument(id: String): String
     }
     type Document {
