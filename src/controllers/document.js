@@ -1,5 +1,19 @@
-const { MongoClient } = require('mongodb');
-const mongodbUri = 'mongodb://test:test123@ds145563.mlab.com:45563/moneyledger';
+const { ObjectID } = require('mongodb');
+
+module.exports.getDocument = async (database, collectionName, id) => {
+
+    try {
+        const document = await database.collection(collectionName).findOne({_id: ObjectID(id)});
+        console.log(document, collectionName, id)
+            return {
+                data: JSON.stringify(document)
+            };
+
+    } catch(e) {
+        console.error(e);
+        return `Error: displaying document`;
+    }
+}
 
 module.exports.listDocuments = async (database, collectionName) => {
 

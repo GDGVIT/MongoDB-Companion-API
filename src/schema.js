@@ -10,6 +10,7 @@ const typeDefs = gql`
     }
     type Collection {
         name: String!
+        document(id: String): Document
         documents: [Document]
         createDocument(data: String): Document
         deleteDocument(id: String): String
