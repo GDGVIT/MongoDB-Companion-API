@@ -51,7 +51,7 @@ module.exports.createDocument = async (database, collectionName, data) => {
 module.exports.editDocument = async (database, collectionName, id, data) => {
 
     try {
-        await database.collection(collectionName).updateOne({_id: ObjectID(id)}, { $set: JSON.parse(data) });
+        await database.collection(collectionName).updateOne({_id: ObjectID(id)}, { $set: data });
         console.log(`Updated document with _id: ${id} in ${collectionName}`);
         return 'Updated!';
 
