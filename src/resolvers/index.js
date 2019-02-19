@@ -14,6 +14,17 @@ module.exports = {
         createCollection: async(_, {name}, {database}) => {
             return await createCollection(database, name);
         },
+        createDocument: async(_, {collectionName, data}, {database}) => {
+            return await createDocument(database, collectionName, data);
+        },
+        editDocument: async(_, {collectionName, documentId, data}, {database}) => {
+            const newDocumentData = JSON.parse(data);
+            delete newDocumentData['_id'];
+            return await editDocument(database, collectionName, documentId, newDocumentData);
+        },
+        deleteDocument: async(_, {collectionName, documentId}, {database}) => {
+            return await deleteDocument(database, collectionName, documentId);
+        },
     },
     Collection: {
         document: async(collection, {id}, {database}) => {
@@ -21,22 +32,6 @@ module.exports = {
         },
         documents: async(collection, {}, {database}) => {
             return await listDocuments(database, collection.name);
-        },
-        createDocument: async(collection, {data}, {database}) => {
-            return await createDocument(database, collection.name, data);
-        },
-    },
-    Document: {
-        editDocument: async(document, {data}, {database}) => {
-            const documentData = JSON.parse(document.data);
-            const newDocumentData = JSON.parse(data);
-            delete newDocumentData['_id'];
-            console.log(newDocumentData);
-            return await editDocument(database, document.collectionName, documentData._id, newDocumentData);
-        },
-        deleteDocument: async(document, {}, {database}) => {
-            const documentData = JSON.parse(document.data);
-            return await deleteDocument(database, document.collectionName, documentData._id);
         },
     }
 }
