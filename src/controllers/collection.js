@@ -49,3 +49,16 @@ module.exports.createCollection = async (database, collectionName) => {
         return `Error: creating ${collectionName} collection`;
     }
 }
+
+module.exports.deleteCollection = async (database, collectionName) => {
+
+    try {
+        await database.collection(collectionName).drop();
+        console.log(`${collectionName} collection deleted`);
+        return "Deleted!";
+
+    } catch(e) {
+        console.error(e)
+        return `Error: deleting ${collectionName} collection`;
+    }
+}

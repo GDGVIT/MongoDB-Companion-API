@@ -7,6 +7,7 @@ const typeDefs = gql`
     }
     type Mutation {
         createCollection(name: String): Collection
+        deleteCollection(collectionName: String): String
         createDocument(collectionName: String, data: String): Document
         editDocument(collectionName: String, documentId: ID, data: String): String
         deleteDocument(collectionName: String, documentId: ID): String

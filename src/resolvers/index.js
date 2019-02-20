@@ -1,4 +1,4 @@
-const { getCollection, listCollections, createCollection } = require('../controllers/collection');
+const { getCollection, listCollections, createCollection, deleteCollection } = require('../controllers/collection');
 const { getDocument, listDocuments, createDocument, editDocument, deleteDocument } = require('../controllers/document');
 
 module.exports = {
@@ -13,6 +13,9 @@ module.exports = {
     Mutation: {
         createCollection: async(_, {name}, {database}) => {
             return await createCollection(database, name);
+        },
+        deleteCollection: async(_, {collectionName}, {database}) => {
+            return await deleteCollection(database, collectionName);
         },
         createDocument: async(_, {collectionName, data}, {database}) => {
             return await createDocument(database, collectionName, data);
