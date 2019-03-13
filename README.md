@@ -1,5 +1,5 @@
 # MongoDB Companion API
-MongoDB Companion Client API
+API for MongoDB Companion Mobile App.
 
 Technologies used:
 - Apollo GraphQL Server
@@ -18,7 +18,7 @@ Run the following command in root directory.
 ```bash
 npm install
 ```
-Run the project.
+Set PORT = xxxx environment variable and run the project.
 
 ```bash
 npm start
