@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/pvsmounish/MongoDB-Companion-API#readme",
   "dependencies": {
-    "apollo-server": "^2.3.2",
+    "apollo-server": "^2.18.2",
     "graphql": "^14.1.1",
     "mongodb": "^3.1.13"
   },
